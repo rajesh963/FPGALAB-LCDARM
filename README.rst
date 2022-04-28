@@ -23,8 +23,10 @@ From the project root dir, execute:
   make -C m4/GCC_Project
 
 This will generate a :code:`m4.bin` in m4/GCC_Project/output/bin which can be flashed. Note:- while compiling you will face a make error this is due to fact that the ARM toolchain path is different for everyone. To solve this
-1. Open Vaman_LCD/m4/GCC_Project/config.mk
-2. Change *export PROJ_ROOT=/home/hy/qorc-sdk* to your qorc-sdk path
+::
+
+  1. Open Vaman_LCD/m4/GCC_Project/config.mk
+  2. Change *export PROJ_ROOT=/home/hy/qorc-sdk* to your qorc-sdk path
 
 
 Flash FPGA and M4
