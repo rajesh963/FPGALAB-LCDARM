@@ -26,7 +26,7 @@ This will generate a :code:`m4.bin` in m4/GCC_Project/output/bin which can be fl
 ::
 
   1. Open Vaman_LCD/m4/GCC_Project/config.mk
-  2. Change *export PROJ_ROOT=/home/hy/qorc-sdk* to your qorc-sdk path
+  2. Change *export PROJ_ROOT=/home/hy/qorc-sdk* to *export PROJ_ROOT=<your_path>/qorc-sdk*
 
 
 Flash FPGA and M4
