@@ -43,8 +43,8 @@ Ensure that you have connected a USB-UART adapter connected to the EOSS3 UART pi
 LCD Display and Pygmy connections
 ----------------------------------
 
-LCD PIN <----> PYGMY
-LCD_D4  <---->  6
+LCD PIN ---- PYGMY
+LCD_D4  ----  6
 LCD_D5  <---->  8
 LCD_D6  <---->  10
 LCD_D7  <---->  12
