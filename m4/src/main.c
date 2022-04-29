@@ -29,7 +29,7 @@
 #include "semphr.h"
 #include "timers.h"
 #include "RtosTask.h"
-
+#include <stdlib.h>
 /*    Include the generic headers required for QORC */
 #include "eoss3_hal_gpio.h"
 #include "eoss3_hal_rtc.h"
@@ -84,19 +84,44 @@ int main(void)
     dbg_str( __DATE__ " " __TIME__ "\n" );
     dbg_str( "##########################\n\n");
 
-    dbg_str( "\n\nHello HIMANSHU, look at the LCD!!\n\n");	// <<<<<<<<<<<<<<<<<<<<<  Change me!
+    dbg_str( "\n\nHello , look at the LCD!!\n\n");	// <<<<<<<<<<<<<<<<<<<<<  Change me!
     
     PyHal_GPIO_Set(18,1);//blue
     
     LcdInit(); 
     dbg_str( "\ninit done\n");
+    int i,j,X[2][2],A,B,C,D,r;
+    char* text;
 
     while(1){
-        LcdWriteString(" ARM Cortex M4  ");
-        LcdSetAddress(16);
-        LcdWriteString("16x2 LCD Display");
-        dbg_str("PRINT DONE\n");
+    
+        LcdWriteString("Random Matrix"); LcdSetAddress(16);
+         LcdWriteString("Multiplication");
         HAL_DelayUSec(1000*1000);
+        LcdClear();
+       
+       
+          A=rand()%10;
+          B=rand()%10;
+          C=rand()%10;
+          D=rand()%10;
+	
+       r = A*C+B*D;
+      
+       sprintf(text,"%d ",A);
+       LcdWriteString(text); LcdSetAddress(16);
+       HAL_DelayUSec(500*1000); 
+       sprintf(text,"%d ",B);
+       LcdWriteString(text); LcdSetAddress(3); 
+       HAL_DelayUSec(500*1000);sprintf(text,"%d ",C);
+       LcdWriteString(text);  LcdSetAddress(5);
+       HAL_DelayUSec(500*1000);sprintf(text,"%d ",D);
+       LcdWriteString(text); LcdSetAddress(8);
+       LcdWriteString("="); HAL_DelayUSec(500*1000); LcdSetAddress(10);
+       HAL_DelayUSec(500*1000);sprintf(text,"%d ",r);
+       LcdWriteString(text); 
+        
+        HAL_DelayUSec(2000*1000);
         LcdClear();
         HAL_DelayUSec(500*1000);
     }
@@ -121,36 +146,4 @@ void SystemInit(void)
 {
 
 }
-
-//gpionum --> 0 --> 31 corresponding to the IO PADs
-//gpioval --> 0 or 1
-// #define FGPIO_DIRECTION_REG (0x40024008)
-// #define FGPIO_OUTPUT_REG (0x40024004)
-
-// void PyHal_GPIO_Set(uint8_t gpionum, uint8_t gpioval)
-// {
-//     uint32_t tempscratch32;
-
-//     if (gpionum > 31)
-//         return;
-
-//     tempscratch32 = *(uint32_t*)(FGPIO_DIRECTION_REG);
-
-//     *(uint32_t*)(FGPIO_DIRECTION_REG) = tempscratch32 | (0x1 << gpionum);
-
-    
-//     tempscratch32 = *(uint32_t*)(FGPIO_OUTPUT_REG);
-
-//     if(gpioval > 0)
-//     {
-//         *(uint32_t*)(FGPIO_OUTPUT_REG) = tempscratch32 | (0x1 << gpionum);
-//     }
-//     else
-//     {
-//         *(uint32_t*)(FGPIO_OUTPUT_REG) = tempscratch32 & ~(0x1 << gpionum);
-//     }    
-
-//     return;
-// }
-
 
